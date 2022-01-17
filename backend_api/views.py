@@ -8,7 +8,8 @@ from .models import DailyWeatherData, CityList
 from .serializers import DailyWeatherDataSerializer, CityListSerializer
 
 # weather api key
-API_KEY = "e8bff08e3d5cea9e0b750a3bfe62f05e"
+from weather_api_project import settings
+API_KEY = settings.API_KEY
 
 
 @api_view(['GET', 'POST'])

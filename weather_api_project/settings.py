@@ -129,3 +129,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Api base url
 API_BASE_URL = "http://127.0.0.1:8000"
+API_KEY = "e8bff08e3d5cea9e0b750a3bfe62f05e"

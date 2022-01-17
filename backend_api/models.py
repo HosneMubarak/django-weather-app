@@ -1,6 +1,10 @@
 from django.db import models
 from django.db.models.signals import post_save
 
+# weather api key
+from weather_api_project import settings
+API_KEY = settings.API_KEY
+
 # Create your models here.
 from django.utils import timezone
 
@@ -18,18 +22,20 @@ class DailyWeatherData(models.Model):
 
 
 class CityList(models.Model):
-    city_name = models.CharField(max_length=200, unique=True)
+    city = models.ForeignKey(DailyWeatherData, on_delete=models.CASCADE)
+    city_lat = models.CharField(max_length=100, null=True, blank=True)
+    city_lon = models.CharField(max_length=100, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.city_name
+        return self.city
 
 
 # Signal
 def create_weather_data(sender, instance, created, **kwargs):
     """ when we will save data than city name will be saved in CityList Modal"""
     if created:
-        CityList.objects.create(city_name=instance.city_name)
+        CityList.objects.create(city=instance)
 
 
 post_save.connect(create_weather_data, sender=DailyWeatherData)
