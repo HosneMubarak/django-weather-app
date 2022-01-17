@@ -40,15 +40,31 @@ def get_current_weather_by_city_name(request):
 
 
 class DailyWeatherDataList(generics.ListCreateAPIView):
+    """
+
+    Get and save current weather of given city
+
+    """
     queryset = DailyWeatherData.objects.all()
     serializer_class = DailyWeatherDataSerializer
 
 
 class DailyWeatherDataDetails(generics.RetrieveUpdateDestroyAPIView):
+    """
+
+    update and delete current weather of given city
+
+    """
+
     queryset = DailyWeatherData.objects.all()
     serializer_class = DailyWeatherDataSerializer
 
 
 class CityListView(generics.ListAPIView):
+    """
+
+    get saved sit of city
+
+    """
     queryset = CityList.objects.all()
     serializer_class = CityListSerializer
