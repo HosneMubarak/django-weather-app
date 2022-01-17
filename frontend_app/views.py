@@ -28,11 +28,13 @@ def home(request):
             return render(request, 'index.html', context)
     elif 'save' in request.POST:
         if request.POST:
+            # getting data from html form
             city_name = request.POST.get('city_name')
             temperature = request.POST.get('temperature')
             max_temperature = request.POST.get('max_temperature')
             min_temperature = request.POST.get('min_temperature')
             humidity = request.POST.get('humidity')
+            # saving data calling api
             save_data_response = save_daily_weather_data(city_name=city_name, temperature=temperature,
                                                          max_temperature=max_temperature,
                                                          min_temperature=min_temperature,
@@ -48,6 +50,7 @@ def home(request):
 
 
 def weather_data_list(request):
+    # getting data from calling api
     all_save_weather_data = get_daily_weather_data()
     city_list = get_city_list()
     context = {
@@ -58,6 +61,7 @@ def weather_data_list(request):
 
 
 def weather_details(request, id):
+    # getting data from calling api
     single_save_weather_data = get_single_daily_weather_data(id=str(id))
     if request.POST:
         city_name = request.POST.get('city_name')
@@ -81,6 +85,7 @@ def weather_details(request, id):
 
 
 def delete(request, id):
+    # deleteing data using delete api
     delete_response = delete_save_daily_weather_data(id=id)
     if delete_response.status_code == 204:
         return redirect('frontend_app:weather-data-list')
