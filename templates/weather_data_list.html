@@ -1,0 +1,55 @@
+{% extends 'layout/base.html' %}
+{% load custom_tags %}
+{% block  content %}
+
+
+    <div class="pt-5">
+        <h4>List of saved history data of city:</h4>
+        {% if city_list != '' %}
+            <h4 class="bg-success text-white">
+                {% for city in city_list %}
+                    {{ city.city_name }},
+                {% endfor %}
+
+            </h4>
+        {% endif %}
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">City Nmae</th>
+                <th scope="col">Temperature</th>
+                <th scope="col">Max Temp</th>
+                <th scope="col">Min Temp</th>
+                <th scope="col">Humidity</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for data in all_save_weather_data %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ data.city_name }}</td>
+                    <td>{{ data.temperature }}° F</td>
+                    <td>{{ data.max_temperature }}° F</td>
+                    <td>{{ data.min_temperature }}° F</td>
+                    <td>{{ data.humidity }} %</td>
+                    <td>
+                        <a href="{% url 'frontend_app:weather-data-list-details' id=data.id %}"
+                           class="btn btn-warning">Update</a>
+                        <a href="{% url 'frontend_app:weather-data-list-delete' id=data.id %}" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            {% empty %}
+                <h4>You have no data</h4>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+
+
+
+
+{% endblock %}
