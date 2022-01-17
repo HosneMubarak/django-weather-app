@@ -5,14 +5,6 @@
 
     <div class="pt-5">
         <h4>List of saved history data of city:</h4>
-        {% if city_list != '' %}
-            <h4 class="bg-success text-white">
-                {% for city in city_list %}
-                    {{ city.city_name }},
-                {% endfor %}
-
-            </h4>
-        {% endif %}
         <table class="table">
             <thead>
             <tr>
@@ -40,6 +32,31 @@
                         <a href="{% url 'frontend_app:weather-data-list-delete' id=data.id %}" class="btn btn-danger">Delete</a>
                     </td>
                 </tr>
+            {% empty %}
+                <h4>You have no data</h4>
+            {% endfor %}
+            </tbody>
+        </table>
+        <h4>City Table Using Signal</h4>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">City Nmae</th>
+                <th scope="col">Lan</th>
+                <th scope="col">Lon</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for city in city_list %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ city.name }}</td>
+                    <td>{{ city.city_lat }}</td>
+                    <td>{{ city.city_lon }}</td>
+                </tr>
+
             {% empty %}
                 <h4>You have no data</h4>
             {% endfor %}
