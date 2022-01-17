@@ -5,7 +5,6 @@
 
     <div class="pt-5">
         <h4>Update Save Data</h4>
-        {{ single_save_weather_data }}
         <form method="POST">
             {% csrf_token %}
             <div class="form-group">
@@ -14,22 +13,22 @@
                        value="{{ single_save_weather_data.city_name }}">
             </div>
             <div class="form-group">
-                <label for="exampleInputEmail1">temperature</label>
+                <label for="exampleInputEmail1">Temperature</label>
                 <input type="text" class="form-control" name="temperature"
                        value="{{ single_save_weather_data.temperature }}">
             </div>
             <div class="form-group">
-                <label for="exampleInputEmail1">max_temperature</label>
+                <label for="exampleInputEmail1">Max Temperature</label>
                 <input type="text" class="form-control" name="max_temperature"
                        value="{{ single_save_weather_data.max_temperature }}">
             </div>
             <div class="form-group">
-                <label for="exampleInputEmail1">min_temperature</label>
+                <label for="exampleInputEmail1">Min Temperature</label>
                 <input type="text" class="form-control" name="min_temperature"
                        value="{{ single_save_weather_data.min_temperature }}">
             </div>
-                        <div class="form-group">
-                <label for="exampleInputEmail1">min_temperature</label>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Humidity</label>
                 <input type="text" class="form-control" name="humidity"
                        value="{{ single_save_weather_data.humidity }}">
             </div>
